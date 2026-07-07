@@ -1,5 +1,0 @@
-name,test_accuracy,balanced_test_accuracy,deox_recall,ischem_recall,stas_recall,confusion_matrix
-nll_weights,0.6967213114754098,0.6845919145690312,0.42105263157894735,0.8695652173913043,0.7631578947368421,/Users/charleneleung/Documents/dkfz/training_runs/kidney_deox_focused_seed06/nll_weights/confusion_matrix.png
-baseline,0.6557377049180327,0.6468344774980931,0.42105263157894735,0.782608695652174,0.7368421052631579,/Users/charleneleung/Documents/dkfz/training_runs/kidney_deox_focused_seed06/baseline/confusion_matrix.png
-lr_0_0003,0.6639344262295082,0.6464530892448512,0.2894736842105263,0.9130434782608695,0.7368421052631579,/Users/charleneleung/Documents/dkfz/training_runs/kidney_deox_focused_seed06/lr_0_0003/confusion_matrix.png
-inverse_oversampling,0.639344262295082,0.6140350877192983,0.10526315789473684,1.0,0.7368421052631579,/Users/charleneleung/Documents/dkfz/training_runs/kidney_deox_focused_seed06/inverse_oversampling/confusion_matrix.png
