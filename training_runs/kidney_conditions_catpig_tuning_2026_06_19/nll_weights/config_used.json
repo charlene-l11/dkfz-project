@@ -1,0 +1,56 @@
+{
+  "config_name": "default",
+  "dataloader_kwargs": {
+    "batch_size": 64,
+    "num_workers": 0
+  },
+  "input": {
+    "cat_pig_label_column": "label",
+    "cat_pig_label_index_column": "label_index",
+    "cat_pig_label_mapping": {
+      "deox": 0,
+      "ischem": 1,
+      "stas": 2
+    },
+    "cat_pig_manifest": "C:\\Users\\c758g\\Documents\\dkfz\\training_runs\\training_runs\\kidney_conditions_prepared_catpig_2026_06_19\\train.csv",
+    "data_spec": null,
+    "epoch_size": 600,
+    "n_channels": 100,
+    "n_classes": 3,
+    "no_labels": false,
+    "normalization": null,
+    "oversampling": false,
+    "preprocessing": []
+  },
+  "label_mapping": null,
+  "lightning_class": "cat_pig_median_pixel.LightningCatPigMedianPixel>LightningCatPigMedianPixel",
+  "model": {
+    "activation_function": "elu",
+    "class_weight_method": "nll",
+    "dropout": 0.2,
+    "normalization": "BatchNorm",
+    "softmin_scaling": -2.0
+  },
+  "optimization": {
+    "lr_scheduler": {
+      "name": "ExponentialLR",
+      "gamma": 0.9
+    },
+    "optimizer": {
+      "lr": 0.001,
+      "name": "Adam",
+      "weight_decay": 0
+    }
+  },
+  "swa_kwargs": null,
+  "trainer_kwargs": {
+    "accelerator": "auto",
+    "devices": 1,
+    "max_epochs": 20,
+    "precision": "32-true"
+  },
+  "validation": {
+    "checkpoint_metric": "accuracy",
+    "checkpoint_saving": "best"
+  }
+}

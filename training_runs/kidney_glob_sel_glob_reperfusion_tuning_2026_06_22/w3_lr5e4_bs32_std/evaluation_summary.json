@@ -1,0 +1,18 @@
+{
+  "train": {
+    "correct": 1896,
+    "total": 2774,
+    "accuracy": 0.6834895457822638
+  },
+  "val": {
+    "correct": 395,
+    "total": 658,
+    "accuracy": 0.6003039513677811
+  },
+  "test": {
+    "correct": 417,
+    "total": 596,
+    "accuracy": 0.6996644295302014
+  },
+  "best_checkpoint": "C:\\Users\\c758g\\Documents\\dkfz\\training_runs\\training_runs\\kidney_glob_sel_glob_reperfusion_tuning_2026_06_22\\w3_lr5e4_bs32_std\\checkpoints\\epoch=24-accuracy=0.4406.ckpt"
+}

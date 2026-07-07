@@ -1,0 +1,18 @@
+{
+  "train": {
+    "correct": 425,
+    "total": 600,
+    "accuracy": 0.7083333333333334
+  },
+  "val": {
+    "correct": 60,
+    "total": 89,
+    "accuracy": 0.6741573033707865
+  },
+  "test": {
+    "correct": 38,
+    "total": 122,
+    "accuracy": 0.3114754098360656
+  },
+  "best_checkpoint": "C:\\Users\\c758g\\Documents\\dkfz\\training_runs\\training_runs\\kidney_conditions_catpig_balanced_tuning_2026_06_19\\weights_5_3_1_lr_0_0003\\checkpoints\\epoch=19-accuracy=0.4727.ckpt"
+}

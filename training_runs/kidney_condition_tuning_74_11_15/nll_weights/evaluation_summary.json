@@ -1,0 +1,18 @@
+{
+  "train": {
+    "correct": 385,
+    "total": 600,
+    "accuracy": 0.6416666666666667
+  },
+  "val": {
+    "correct": 66,
+    "total": 89,
+    "accuracy": 0.7415730337078652
+  },
+  "test": {
+    "correct": 35,
+    "total": 122,
+    "accuracy": 0.28688524590163933
+  },
+  "best_checkpoint": "/Users/charleneleung/Documents/dkfz/training_runs/kidney_condition_tuning_74_11_15/nll_weights/checkpoints/epoch=16-accuracy=0.4764.ckpt"
+}

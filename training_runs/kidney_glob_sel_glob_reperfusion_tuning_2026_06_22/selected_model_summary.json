@@ -1,0 +1,61 @@
+{
+  "recommended_run": "training_runs\\training_runs\\kidney_glob_sel_glob_reperfusion_tuning_2026_06_22\\w8_lr3e4_bs32_std",
+  "reason": "Best tradeoff for kidney_glob_reperfusion: high target recall while retaining the best overall test accuracy among high-recall runs.",
+  "hyperparameters": {
+    "class_weights": "1,8,1,1",
+    "learning_rate": 0.0003,
+    "batch_size": 32,
+    "standardize": true,
+    "max_epochs": 25,
+    "seed": 42
+  },
+  "summary_csv": "training_runs\\training_runs\\kidney_glob_sel_glob_reperfusion_tuning_2026_06_22\\sweep_summary.csv",
+  "per_class_metrics": [
+    {
+      "label": "kidney_glob",
+      "precision": 0.9108910891089109,
+      "recall": 0.48936170212765956,
+      "f1": 0.6366782006920415,
+      "support": 188
+    },
+    {
+      "label": "kidney_glob_reperfusion",
+      "precision": 0.6687116564417178,
+      "recall": 0.8257575757575758,
+      "f1": 0.7389830508474576,
+      "support": 132
+    },
+    {
+      "label": "kidney_sel",
+      "precision": 0.7021276595744681,
+      "recall": 0.8839285714285714,
+      "f1": 0.7826086956521738,
+      "support": 224
+    },
+    {
+      "label": "kidney_sel_reperfusion",
+      "precision": 0.54,
+      "recall": 0.5192307692307693,
+      "f1": 0.5294117647058824,
+      "support": 52
+    }
+  ],
+  "evaluation_summary": {
+    "train": {
+      "correct": 1428,
+      "total": 2774,
+      "accuracy": 0.5147801009372747
+    },
+    "val": {
+      "correct": 278,
+      "total": 658,
+      "accuracy": 0.42249240121580545
+    },
+    "test": {
+      "correct": 426,
+      "total": 596,
+      "accuracy": 0.714765100671141
+    },
+    "best_checkpoint": "C:\\Users\\c758g\\Documents\\dkfz\\training_runs\\training_runs\\kidney_glob_sel_glob_reperfusion_tuning_2026_06_22\\w8_lr3e4_bs32_std\\checkpoints\\epoch=24-accuracy=0.4145.ckpt"
+  }
+}

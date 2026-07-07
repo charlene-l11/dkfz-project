@@ -1,0 +1,9 @@
+{
+  "feature_columns": [],
+  "input_type": "spectrum_csv",
+  "patterns": [
+    "spectrum_fromCSV1_(500.0-995.0)_masked_data_0_derivative.csv",
+    "spectrum_fromCSV5_(500.0-995.0)_masked_data_0_derivative.csv",
+    "spectrum_from*.csv"
+  ]
+}

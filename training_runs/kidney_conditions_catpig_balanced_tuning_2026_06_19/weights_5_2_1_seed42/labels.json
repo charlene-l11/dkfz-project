@@ -1,0 +1,12 @@
+{
+  "labels": [
+    "deox",
+    "ischem",
+    "stas"
+  ],
+  "mapping": {
+    "deox": 0,
+    "ischem": 1,
+    "stas": 2
+  }
+}

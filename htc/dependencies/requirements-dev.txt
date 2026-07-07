@@ -1,0 +1,6 @@
+-r requirements-extra.txt
+-r requirements-tests.txt
+pre-commit
+line-profiler
+ninja
+cibuildwheel

@@ -1,0 +1,5 @@
+,kidney_glob,kidney_glob_reperfusion,kidney_sel,kidney_sel_reperfusion
+kidney_glob,143,36,0,9
+kidney_glob_reperfusion,38,80,0,14
+kidney_sel,98,91,1,34
+kidney_sel_reperfusion,0,51,0,1

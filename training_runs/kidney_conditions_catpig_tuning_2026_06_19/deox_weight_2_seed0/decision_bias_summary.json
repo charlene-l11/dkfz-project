@@ -1,0 +1,23 @@
+{
+  "biases": {
+    "deox": -0.4000053405761719,
+    "ischem": 0.09999418258666992,
+    "stas": 0.0
+  },
+  "val_accuracy": 0.7415730337078652,
+  "val_balanced_accuracy": 0.7624521072796936,
+  "val_min_recall": 0.6206896551724138,
+  "val_recall": {
+    "deox": 0.6206896551724138,
+    "ischem": 0.6666666666666666,
+    "stas": 1.0
+  },
+  "test_accuracy": 0.22131147540983606,
+  "test_balanced_accuracy": 0.6036231884057971,
+  "test_min_recall": 0.010869565217391304,
+  "test_recall": {
+    "deox": 0.010869565217391304,
+    "ischem": 0.8,
+    "stas": 1.0
+  }
+}

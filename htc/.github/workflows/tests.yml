@@ -1,0 +1,36 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  tests:
+    name: Build and test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python-version: ["3.14"]
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+          cache-dependency-path: "dependencies/requirements*.txt"
+
+      - name: Install dependencies
+        run: pip install -r dependencies/requirements.txt
+
+      - name: Install htc
+        run: pip install --no-build-isolation -e .
+
+      # Tests run only in the internal repository. For the public repository, we only check that everything is importable
+      - name: Tests
+        env:
+          HTC_ADD_NETWORK_ALTERNATIVES: false
+        run: |
+          pip install -r dependencies/requirements-tests.txt
+          py.test --doctest-modules --import-mode=importlib --collect-only --ignore=tests .

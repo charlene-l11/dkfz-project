@@ -1,0 +1,14 @@
+name,test_accuracy,balanced_test_accuracy,deox_recall,ischem_recall,stas_recall,confusion_matrix
+seed1,0.2786885245901639,0.6811594202898551,0.043478260869565216,1.0,1.0,/Users/charleneleung/Documents/dkfz/training_runs/kidney_condition_tuning_74_11_15/seed1/confusion_matrix.png
+batch_128,0.27049180327868855,0.677536231884058,0.03260869565217391,1.0,1.0,/Users/charleneleung/Documents/dkfz/training_runs/kidney_condition_tuning_74_11_15/batch_128/confusion_matrix.png
+inverse_lr_0_0003_batch_32,0.27049180327868855,0.677536231884058,0.03260869565217391,1.0,1.0,/Users/charleneleung/Documents/dkfz/training_runs/kidney_condition_tuning_74_11_15/inverse_lr_0_0003_batch_32/confusion_matrix.png
+batch_32,0.2540983606557377,0.6702898550724639,0.010869565217391304,1.0,1.0,/Users/charleneleung/Documents/dkfz/training_runs/kidney_condition_tuning_74_11_15/batch_32/confusion_matrix.png
+lr_0_0001,0.2459016393442623,0.6666666666666666,0.0,1.0,1.0,/Users/charleneleung/Documents/dkfz/training_runs/kidney_condition_tuning_74_11_15/lr_0_0001/confusion_matrix.png
+lr_0_0003,0.2459016393442623,0.6666666666666666,0.0,1.0,1.0,/Users/charleneleung/Documents/dkfz/training_runs/kidney_condition_tuning_74_11_15/lr_0_0003/confusion_matrix.png
+baseline_seed42,0.27049180327868855,0.6644927536231884,0.043478260869565216,0.95,1.0,/Users/charleneleung/Documents/dkfz/training_runs/kidney_condition_tuning_74_11_15/baseline_seed42/confusion_matrix.png
+oversampling,0.27049180327868855,0.6644927536231884,0.043478260869565216,0.95,1.0,/Users/charleneleung/Documents/dkfz/training_runs/kidney_condition_tuning_74_11_15/oversampling/confusion_matrix.png
+nll_weights,0.28688524590163933,0.658695652173913,0.07608695652173914,0.9,1.0,/Users/charleneleung/Documents/dkfz/training_runs/kidney_condition_tuning_74_11_15/nll_weights/confusion_matrix.png
+balanced_weights,0.2540983606557377,0.6181159420289856,0.05434782608695652,0.8,1.0,/Users/charleneleung/Documents/dkfz/training_runs/kidney_condition_tuning_74_11_15/balanced_weights/confusion_matrix.png
+inverse_weights,0.2459016393442623,0.6144927536231884,0.043478260869565216,0.8,1.0,/Users/charleneleung/Documents/dkfz/training_runs/kidney_condition_tuning_74_11_15/inverse_weights/confusion_matrix.png
+seed2,0.19672131147540983,0.36594202898550726,0.09782608695652174,0.5,0.5,/Users/charleneleung/Documents/dkfz/training_runs/kidney_condition_tuning_74_11_15/seed2/confusion_matrix.png
+seed0,0.7540983606557377,0.3333333333333333,1.0,0.0,0.0,/Users/charleneleung/Documents/dkfz/training_runs/kidney_condition_tuning_74_11_15/seed0/confusion_matrix.png

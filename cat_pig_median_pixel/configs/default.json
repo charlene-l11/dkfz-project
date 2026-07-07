@@ -1,0 +1,44 @@
+{
+    "inherits": "models/median_pixel/configs/default.json",
+    "lightning_class": "cat_pig_median_pixel.LightningCatPigMedianPixel>LightningCatPigMedianPixel",
+    "label_mapping": null,
+    "input": {
+        "data_spec": null,
+        "cat_pig_manifest": null,
+        "cat_pig_label_column": "label",
+        "cat_pig_label_index_column": "label_index",
+        "cat_pig_label_mapping": null,
+        "n_channels": 100,
+        "n_classes": 2,
+        "normalization": null,
+        "preprocessing": [],
+        "no_labels": false,
+        "oversampling": false,
+        "epoch_size": 100000
+    },
+    "model": {
+        "class_weight_method": null
+    },
+    "optimization": {
+        "optimizer": {
+            "name": "Adam",
+            "lr": 0.001,
+            "weight_decay": 0
+        }
+    },
+    "dataloader_kwargs": {
+        "batch_size": 64,
+        "num_workers": 0
+    },
+    "trainer_kwargs": {
+        "max_epochs": 10,
+        "precision": "32-true",
+        "devices": 1,
+        "accelerator": "auto"
+    },
+    "swa_kwargs": null,
+    "validation": {
+        "checkpoint_metric": "accuracy",
+        "checkpoint_saving": "best"
+    }
+}

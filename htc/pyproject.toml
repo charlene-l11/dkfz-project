@@ -1,0 +1,141 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = [
+  "ninja",
+  "setuptools",
+  "torch",
+]
+
+[tool.cibuildwheel]
+build = "cp312-* cp313-* cp314-*"
+skip = "*musllinux*"
+# This must be in sync with what PyTorch is using
+manylinux-x86_64-image = "manylinux_2_28"
+linux.environment-pass = [ "PIP_CACHE_DIR" ]
+linux.archs = [ "x86_64" ]
+# We are excluding all the libraries which PyTorch provides
+linux.repair-wheel-command = """\
+  auditwheel repair --exclude libtorch_cpu.so --exclude libtorch_python.so --exclude libtorch.so --exclude libc10.so \
+  -w {dest_dir} {wheel}\
+  """
+linux.before-all = """
+# If host provided PIP_CACHE_DIR, rewrite it to the /host mount inside the container
+if [ -n "$PIP_CACHE_DIR" ]; then
+  export PIP_CACHE_DIR="/host$PIP_CACHE_DIR"
+fi
+echo "PIP_CACHE_DIR=$PIP_CACHE_DIR"
+"""
+# If multiple wheels are built (e.g., all Python versions), the second wheel will fail due to a non-clean build directory
+# Hence, we just delete it to start fresh
+before-build = "python -c \"import shutil; shutil.rmtree('build', ignore_errors=True)\""
+before-test = "pip install -r dependencies/requirements-tests.txt"
+test-command = [
+  """\
+  python -c \"import os; from importlib.metadata import version; assert 'v' + version('imsy-htc') == \
+  os.getenv('CI_COMMIT_TAG'), os.getenv('CI_COMMIT_TAG')\"\
+  """,
+  'py.test --doctest-modules --import-mode=importlib --collect-only --pyargs "htc" "htc_projects"',
+  'python -c "from htc import settings; assert settings.src_dir == settings.htc_package_dir, settings.src_dir"',
+]
+macos.archs = [ "auto" ]
+macos.repair-wheel-command = "delocate-wheel --ignore-missing-dependencies --require-archs {delocate_archs} -w {dest_dir} -v {wheel}"
+windows.archs = [ "AMD64" ]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+format.preview = true
+format.docstring-code-line-length = 120
+format.docstring-code-format = true
+# TODO: enable at some point: E721, NPY002, SIM
+lint.extend-select = [
+  "A",
+  "B",
+  "C4",
+  "D",
+  "FLY",
+  "FURB",
+  "I",
+  "NPY",
+  "PERF",
+  "PIE",
+  "PTH",
+  "RUF",
+  "T10",
+  "TC",
+  "UP",
+  "YTT",
+]
+lint.ignore = [
+  "A004",    # Overwriting builtins can be intended
+  "B007",    # It can be intended to name loop variables even if they are not used
+  "B023",    # Leads to a lot of false alarms
+  "B027",    # It is totally valid to prepare more methods in an abstract class without forcing them to be abstract
+  "C408",    # We still want to use the dict(key=value) syntax
+  # pydocstyle has a lot of irrelevant checks by default. We are mainly interested in D417 (checks for missing arguments)
+  "D1",
+  "D200",
+  "D202",
+  "D205",
+  "D212",
+  "D400",
+  "D401",
+  "D402",
+  "D415",
+  "E721",
+  "E731",    # Assigning lambdas to variables can be cleaner
+  "E741",    # Usually not an issue
+  "F841",    # Does not detect df.query usage
+  "NPY002",  # Requires manual changes and testing
+  "PERF401", # May lead to too complex code
+  "RUF001",  # Explicitly intended
+  "RUF002",  # Usually no problem and can be intended (e.g., narrow non-breaking space)
+  "RUF003",  # Explicitly intended
+  "RUF013",  # Produces unnecessary complexity
+  "RUF059",  # Similar to F841, does not detect query usage
+  "UP031",   # % formatting can be easier with JS string code
+]
+lint.per-file-ignores."__init__.py" = [ "F401" ]
+lint.unfixable = [ "B905" ]  # We don't want strict=False but strict=True
+lint.pydocstyle.convention = "google"
+
+[tool.pytest]
+ini_options.addopts = "-v -ra --instafail"
+ini_options.script_launch_mode = "subprocess"
+ini_options.timeout = 1200
+ini_options.filterwarnings = [ "ignore::DeprecationWarning:^(?!htc|challenger_pydocker):" ]
+ini_options.markers = [
+  "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+  "serial: always execute test sequentially (mainly for tests which use the GPU)",
+]
+ini_options.env = [
+  "D:HTC_ADD_NETWORK_ALTERNATIVES=true",
+  # Allow env monkeypatching during testing
+  "D:HTC_ENV_OVERRIDE=false",
+]
+# Notebooks which use the GPU and hence cannot be run in parallel
+ini_options.serial_notebooks = [
+  "htc/data_exploration/Augmentations.ipynb",
+  "htc_projects/camera/DistanceCorrelation.ipynb",
+  "htc_projects/camera/colorchecker/Interpolation.ipynb",
+  "htc_projects/species/RatPerfusion.ipynb",
+  "paper/MIA2022/DatasetSize.ipynb",
+  "paper/MICCAI2023/BootstrapRankingBubblePlots.ipynb",
+  "paper/MICCAI2023/OrganTransplantationExample.ipynb",
+  "paper/MIA2024/ExamplePredictions.ipynb",
+  "paper/MIA2024/BootstrapRanking.ipynb",
+  "paper/NatureBME2026/ExamplePredictions.ipynb",
+]
+# These notebooks must be skipped during testing due to missing files etc.
+ini_options.blacklisted_notebooks = [
+  "htc_projects/camera/SpectralConversion.ipynb:Requires the susi module",
+  "htc/tivita_studies/TechnicalValidationTivitaMini.ipynb:Too many file accesses",
+  "htc/tivita_studies/TechnicalValidationCam.ipynb:Too many file accesses",
+  "paper/MIA2024/SpatialGranularityComparison.ipynb:Requires a LaTeX installation",
+]
+# Doctests which use the GPU and hence cannot be run in parallel
+ini_options.serial_doctests = [
+  "htc/models/common/HTCModel.py",
+  "htc/model_processing/SinglePredictor.py",
+  "htc/model_processing/SinglePredictionTable.py",
+]

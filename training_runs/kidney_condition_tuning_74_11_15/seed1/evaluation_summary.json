@@ -1,0 +1,18 @@
+{
+  "train": {
+    "correct": 400,
+    "total": 600,
+    "accuracy": 0.6666666666666666
+  },
+  "val": {
+    "correct": 65,
+    "total": 89,
+    "accuracy": 0.7303370786516854
+  },
+  "test": {
+    "correct": 34,
+    "total": 122,
+    "accuracy": 0.2786885245901639
+  },
+  "best_checkpoint": "/Users/charleneleung/Documents/dkfz/training_runs/kidney_condition_tuning_74_11_15/seed1/checkpoints/epoch=19-accuracy=0.4892.ckpt"
+}

@@ -1,0 +1,18 @@
+{
+  "train": {
+    "correct": 1666,
+    "total": 2774,
+    "accuracy": 0.6005767844268205
+  },
+  "val": {
+    "correct": 353,
+    "total": 658,
+    "accuracy": 0.5364741641337386
+  },
+  "test": {
+    "correct": 347,
+    "total": 596,
+    "accuracy": 0.5822147651006712
+  },
+  "best_checkpoint": "C:\\Users\\c758g\\Documents\\dkfz\\training_runs\\training_runs\\kidney_glob_sel_balanced_2026_06_22\\checkpoints\\epoch=19-accuracy=0.5180.ckpt"
+}

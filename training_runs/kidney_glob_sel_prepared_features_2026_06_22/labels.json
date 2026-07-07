@@ -1,0 +1,14 @@
+{
+  "labels": [
+    "kidney_glob",
+    "kidney_glob_reperfusion",
+    "kidney_sel",
+    "kidney_sel_reperfusion"
+  ],
+  "mapping": {
+    "kidney_glob": 0,
+    "kidney_glob_reperfusion": 1,
+    "kidney_sel": 2,
+    "kidney_sel_reperfusion": 3
+  }
+}

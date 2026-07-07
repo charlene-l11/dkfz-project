@@ -1,0 +1,41 @@
+services:
+  imsy-htc-base:
+    build:
+      context: ..
+      dockerfile: dependencies/base.Dockerfile
+    image: imsy-htc-base
+  imsy-htc:
+    build:
+      context: ..
+      dockerfile: dependencies/Dockerfile
+      additional_contexts:
+        imsy-htc-base: "service:imsy-htc-base"
+    image: imsy-htc
+    container_name: imsy-htc
+    network_mode: host # e.g. for Jupyter Lab
+    shm_size: 10gb
+    environment:
+      - PIP_CACHE_DIR=/root/.cache/pip
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # This allows Docker containers to be start from inside the container, but as siblings and not nested (https://stackoverflow.com/a/33003273/2762258)
+      - pip-cache:/root/.cache/pip
+    # Required to get copy-on-write to work: https://github.com/moby/moby/issues/18191#issuecomment-159280820
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+# Use a global pip cache for pip downloads inside the container (not during build but there we have Docker's own cache)
+# This is especially helpful for the steps which use a custom conda environment inside the container (e.g., test-package) because there we don't have the caching capabilities of Docker and pip downloads can take a long time
+# Inspect the volume: docker volume inspect pip-cache
+# Get the size of the volume: docker system df -v | grep pip-cache
+volumes:
+  pip-cache:
+    name: pip-cache

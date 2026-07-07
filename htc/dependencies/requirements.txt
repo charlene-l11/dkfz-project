@@ -1,0 +1,26 @@
+numpy>=2  # Older numpy versions do not provide Python 3.13 wheels
+scipy
+scikit-learn
+Pillow
+pandas
+pyarrow
+matplotlib
+seaborn
+plotly
+kaleido<1  # v1 is broken at the moment: https://github.com/plotly/Kaleido/issues/386
+jupyterlab
+tensorboard
+lightning!=2.6.2,!=2.6.3
+python-dotenv
+monai!=1.5.0
+GPUtil
+psutil
+segmentation-models-pytorch
+kornia!=0.7.4
+rich
+threadpoolctl
+commentjson
+appdirs
+blosc
+torch
+lazy-imports

@@ -1,0 +1,21 @@
+{
+  "train": {
+    "correct": 363,
+    "total": 568,
+    "accuracy": 0.6390845070422535
+  },
+  "val": {
+    "correct": 62,
+    "total": 121,
+    "accuracy": 0.512396694214876
+  },
+  "test": {
+    "correct": 102,
+    "total": 122,
+    "accuracy": 0.8360655737704918
+  },
+  "best_checkpoint": "C:\\Users\\c758g\\Documents\\dkfz\\training_runs\\29062026_1403_matrix\\checkpoints\\epoch=29-accuracy=0.4932.ckpt",
+  "class_weight_method": "inverse",
+  "explicit_class_weights": null,
+  "oversampling": false
+}

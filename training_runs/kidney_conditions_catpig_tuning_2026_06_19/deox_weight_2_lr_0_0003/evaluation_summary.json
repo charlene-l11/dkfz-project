@@ -1,0 +1,18 @@
+{
+  "train": {
+    "correct": 404,
+    "total": 600,
+    "accuracy": 0.6733333333333333
+  },
+  "val": {
+    "correct": 66,
+    "total": 89,
+    "accuracy": 0.7415730337078652
+  },
+  "test": {
+    "correct": 33,
+    "total": 122,
+    "accuracy": 0.27049180327868855
+  },
+  "best_checkpoint": "C:\\Users\\c758g\\Documents\\dkfz\\training_runs\\training_runs\\kidney_conditions_catpig_tuning_2026_06_19\\deox_weight_2_lr_0_0003\\checkpoints\\epoch=15-accuracy=0.4996.ckpt"
+}
