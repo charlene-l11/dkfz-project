@@ -1,0 +1,79 @@
+﻿experiment:
+  name: organ-median-pixel
+
+# Platform-specific paths let this same YAML run on Windows and the Linux cluster.
+# htc_root must point to the ORIGINAL HTC repository containing htc/__init__.py.
+paths:
+  htc_root:
+    windows: "C:/Users/c758g/Downloads/htc-main"
+    linux: "/omics/groups/OE0645/internal/HSI_RISE/htc"
+  data_root:
+    windows: "Z:/TIVITA_Cat"
+    linux: "/omics/groups/OE0645/internal/data"
+  runs_root:
+    windows: "C:/Users/c758g/Documents/dkfz final code/runs"
+    linux: "/omics/groups/OE0645/internal/HSI_RISE/runs"
+
+data:
+  expected_channels: 100
+  annotation_name: csv_spectrum
+  patterns:
+    - "spectrum_fromCSV1_(500.0-995.0)_masked_data_0_derivative.csv"
+    - "spectrum_fromCSV1_(500.0-995.0)*_masked_data_0_derivative.csv"
+  # Folders may be relative to data_root or absolute. Add/remove classes here.
+  sources:
+    stomach: "Cat_Rat/Cat_atlas/Cat_0001_stomach/data"
+    small_bowel: "Cat_Rat/Cat_atlas/Cat_0002_small_bowel/data"
+    colon: "Cat_Rat/Cat_atlas/Cat_0003_colon/data"
+    liver: "Cat_Rat/Cat_atlas/Cat_0004_liver/data"
+    pancreas: "Cat_Rat/Cat_atlas/Cat_0006_pancreas/data"
+    kidney: "Cat_Rat/Cat_atlas/Cat_0007_kidney/data"
+    spleen: "Cat_Rat/Cat_atlas/Cat_0008_spleen/data"
+    bladder: "Cat_Rat/Cat_atlas/Cat_0009_bladder/data"
+    omentum: "Cat_Rat/Cat_atlas/Cat_0010_omentum/data"
+    lung: "Cat_Rat/Cat_atlas/Cat_0013_lung/data"
+    heart: "Cat_Rat/Cat_atlas/Cat_0014_heart/data"
+    cartilage: "Cat_Rat/Cat_atlas/Cat_0015_cartilage/data"
+    bone: "Cat_Rat/Cat_atlas/Cat_0016_bone/data"
+    skin: "Cat_Rat/Cat_atlas/Cat_0017_skin/data"
+    muscle: "Cat_Rat/Cat_atlas/Cat_0018_muscle/data"
+    peritoneum: "Cat_Rat/Cat_atlas/Cat_0019_peritoneum/data"
+    major_vein: "Cat_Rat/Cat_atlas/Cat_0022_major_vein/data"
+    kidney_with_gerota_fascia: "Cat_Rat/Cat_atlas/Cat_0024_kidney_with_Ger_fascia/data"
+
+# Full spectral grid and optional manual channel selection.
+# Use null for all wavelengths, or combine exact values and inclusive ranges.
+wavelength:
+  min: 500
+  max: 995
+  selective: "500; 560-720; 730-735; 875; 900-930"
+
+splitting:
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+  seed: 42
+  search_attempts: 20000
+  require_all_classes_in: [train, val, test]
+
+training:
+  seed: 42
+  max_epochs: 150
+  batch_size: 64
+  learning_rate: 0.0002
+  accelerator: auto
+  devices: 1
+  precision: 32-true
+  num_workers: 0
+  epoch_size: null
+  standardize: true
+  checkpoint_metric: accuracy
+
+  # Exactly one strategy: none, class_weighting, or balanced_oversampling.
+  imbalance:
+    strategy: balanced_oversampling
+
+evaluation:
+  formats: [csv, png, pdf]
+  dpi: 300
+
