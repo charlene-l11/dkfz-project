@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dkfz-median-pipeline"
+version = "1.0.0"
+description = "Cross-platform median-spectrum classification pipeline using the unmodified HTC model"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy",
+  "pandas",
+  "matplotlib",
+  "PyYAML",
+  "torch",
+  "lightning",
+]
+
+[tool.setuptools.packages.find]
+include = ["median_pipeline*"]
+
+[project.scripts]
+dkfz-median-pipeline = "median_pipeline.cli:main"
