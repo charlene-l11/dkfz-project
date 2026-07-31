@@ -1,0 +1,115 @@
+﻿# Platform-specific paths let this same YAML run on Windows and the Linux cluster.
+# htc_root must point to the ORIGINAL HTC repository containing htc/__init__.py.
+paths:
+  htc_root:
+    windows: "d:/HTC_github_merged/htc"
+    linux: "/omics/groups/OE0645/internal/HSI_RISE/htc"
+  # Change this one root when the Cat atlas data moves.
+  data_root:
+    windows: "z:/TIVITA_Cat/Cat_Pig/Cat_atlas"
+    linux: "/omics/groups/OE0645/internal/data/Cat_Pig/Cat_atlas"
+# The organ names must match exactly in all three sections.
+experiment_folders:
+  1_stom_pig: "Cat_0001_stomach/data"
+  2_sb_pig: "Cat_0002_small_bowel/data"
+  3_col_pig: "Cat_0003_colon/data"
+  4_liv_pig: "Cat_0004_liver/data"
+  5_gall_pig: "Cat_0005_gallbladder/data"
+  6_pancr_pig: "Cat_0006_pancreas/data"
+  7_kid_pig: "Cat_0007_kidney/data"
+  8_splee_pig: "Cat_0008_spleen/data"
+  9_bladd_pig: "Cat_0009_bladder/data"
+  10_omen_pig: "Cat_0010_omentum/data"
+  11_lung_pig: "Cat_0013_lung/data"
+  12_heart_pig: "Cat_0014_heart/data"
+  13_cart_pig: "Cat_0015_cartilage/data"
+  14_bone_pig: "Cat_0016_bone/data"
+  15_skin_pig: "Cat_0017_skin/data"
+  16_musc_pig: "Cat_0018_muscle/data"
+  17_per_pig: "Cat_0019_peritoneum/data"
+
+labelling_file:
+  1_stom_pig: "_labelling_001.txt"
+  2_sb_pig: "_labelling_001.txt"
+  3_col_pig: "_labelling_001.txt"
+  4_liv_pig: "_labelling_001.txt"
+  5_gall_pig: "_labelling_001.txt"
+  6_pancr_pig: "_labelling_001.txt"
+  7_kid_pig: "_labelling_001.txt"
+  8_splee_pig: "_labelling_001.txt"
+  9_bladd_pig: "_labelling_001.txt"
+  10_omen_pig: "_labelling_001.txt"
+  11_lung_pig: "_labelling_001.txt"
+  12_heart_pig: "_labelling_001.txt"
+  13_cart_pig: "_labelling_001.txt"
+  14_bone_pig: "_labelling_001.txt"
+  15_skin_pig: "_labelling_001.txt"
+  16_musc_pig: "_labelling_001.txt"
+  17_per_pig: "_labelling_001.txt"
+
+hyperguis:
+  1_stom_pig: "_hypergui_1"
+  2_sb_pig: "_hypergui_1"
+  3_col_pig: "_hypergui_1"
+  4_liv_pig: "_hypergui_1"
+  5_gall_pig: "_hypergui_1"
+  6_pancr_pig: "_hypergui_1"
+  7_kid_pig: "_hypergui_1"
+  8_splee_pig: "_hypergui_1"
+  9_bladd_pig: "_hypergui_1"
+  10_omen_pig: "_hypergui_1"
+  11_lung_pig: "_hypergui_1"
+  12_heart_pig: "_hypergui_1"
+  13_cart_pig: "_hypergui_1"
+  14_bone_pig: "_hypergui_1"
+  15_skin_pig: "_hypergui_1"
+  16_musc_pig: "_hypergui_1"
+  17_per_pig: "_hypergui_1"
+
+data:
+  expected_channels: 100
+  annotation_name: csv_spectrum
+  patterns:
+    - "spectrum_fromCSV1_(500.0-995.0)_masked_data_0_derivative.csv"
+    - "spectrum_fromCSV1_(500.0-995.0)*_masked_data_0_derivative.csv"
+
+# Full spectral grid and optional manual channel selection.
+# Use null for all wavelengths, or combine exact values and inclusive ranges.
+stepwise_analysis: false
+reverse_stepwise: false
+forward_stop_wavelength: 995
+reverse_stop_wavelength: 500
+
+wavelength:
+  min: 500
+  max: 995
+  selective: "500; 560-720; 730-735; 875; 900-930"
+
+splitting:
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+  seed: 42
+  search_attempts: 20000
+  require_all_classes_in: [train, val, test]
+
+training:
+  seed: 42
+  max_epochs: 150
+  batch_size: 64
+  learning_rate: 0.0002
+  accelerator: auto
+  devices: 1
+  precision: 32-true
+  num_workers: 0
+  epoch_size: null
+  standardize: true
+  checkpoint_metric: accuracy
+
+  # Exactly one strategy: none, class_weighting, or balanced_oversampling.
+  imbalance:
+    strategy: balanced_oversampling
+
+evaluation:
+  formats: [csv, png, pdf]
+  dpi: 300
