@@ -1,6 +1,6 @@
 # DKFZ median-spectrum classification pipeline
 
-## Plain-language overview
+## Overview
 
 This research pipeline trains a neural network to classify tissue or organ categories from **precomputed median hyperspectral spectra**. Each input file represents one median spectrum from one labelled recording. The software discovers the files, separates subjects into training, validation, and test groups, trains the inherited HTC median-pixel model, and creates tables and confusion matrices for review.
 
@@ -13,9 +13,7 @@ The main workflow is a basic internal experiment:
 5. Use the validation group during training to select a checkpoint.
 6. Evaluate the retained checkpoint on the held-out test group.
 
-> **Research-use notice:** This software is an experimental analysis tool. It is not a medical device, does not provide a diagnosis or treatment recommendation, and has not been validated for clinical decision-making. Its results require review by appropriately qualified clinical and technical investigators.
-
-## What the software does—and does not do
+## What the software does
 
 The pipeline:
 
@@ -25,14 +23,6 @@ The pipeline:
 - trains the original, unmodified HTC median-pixel model;
 - reports accuracy, balanced accuracy (macro recall), macro F1, class-level performance, and confusion matrices;
 - records the configuration, data manifests, software versions, and HTC source fingerprints needed to audit a run.
-
-The pipeline does **not**:
-
-- create spectra directly from raw hyperspectral images;
-- create or verify clinical annotations from image content;
-- perform L1 normalization itself;
-- estimate diagnostic sensitivity or specificity for clinical deployment;
-- replace independent clinical validation.
 
 The class assigned to a spectrum comes from the matching key in the YAML configuration, for example `stomach` or `liver`. A matching labelling TXT file must be present beside the selected HyperGUI folder, but this pipeline checks its presence only; it does not parse the TXT file to determine the class. Investigators should therefore verify the folder-to-class mapping before every run.
 
@@ -111,7 +101,7 @@ data:
 - `true` selects `_L1pixel/spectrum_fromCSV1_masked_data_L1pixel_0_derivative.csv`.
 - `false` selects the original-reflectance median-spectrum files matching `spectrum_fromCSV1_(500.0-995.0)*_masked_data_0_derivative.csv`.
 
-When `true`, the pipeline uses **precomputed median spectra derived from L1-normalized pixel spectra**. It does not calculate L1 normalization. Do not add a second `data:` block and do not use `use_l1pixel` in the source YAML.
+When `true`, the pipeline uses **precomputed median spectra derived from L1-normalized pixel spectra**.
 
 The selected and resolved file pattern is recorded in `run_config/resolved_config.json`.
 
@@ -205,22 +195,6 @@ Review the split workbooks produced by `prepare` before starting a long run. In 
 | Test | Provides the final held-out assessment | Final metrics only; it does not influence standardization, training, or checkpoint selection |
 
 All spectra from one recognized subject are assigned to only one partition. The software searches up to the configured number of candidate subject assignments, requires all classes in the configured partitions, and retains the assignment with the lowest class-imbalance score. The requested ratios determine rounded numbers of validation and test subjects; the remaining subjects are assigned to training. Spectrum counts may therefore differ from the nominal percentages.
-
-### Per-channel standardization
-
-If `training.standardize: true`, the arithmetic mean and population standard deviation are calculated separately for each selected wavelength using **training spectra only**. A zero standard deviation is replaced by one. The same training-derived values are then applied unchanged to the training, validation, and test spectra.
-
-This z-standardization occurs inside the pipeline and is different from the upstream L1 pixel normalization represented by `use_L1pixel_normalized_values`.
-
-### Important checkpoint detail
-
-The inherited HTC validation code logs the **running cumulative mean of subject-level validation accuracies from the first epoch through the current epoch**. The saved checkpoint with the highest value of this cumulative metric is retained.
-
-It is therefore inaccurate to describe the selected checkpoint as “the checkpoint with maximum current-epoch validation accuracy.” Use this wording instead:
-
-> The retained checkpoint maximized the running cumulative mean of subject-level validation accuracies accumulated from the first epoch through the current epoch.
-
-Validation cross-entropy is recorded for the loss curve, but it does not select the checkpoint and does not control the exponential learning-rate schedule. Early stopping is not implemented; a normally completed run trains for the configured number of epochs.
 
 ## Training and class imbalance
 
@@ -416,15 +390,3 @@ Compare `run_config/source_config.yaml`, `resolved_config.json`, `htc_config.jso
 - The original HTC repository is treated as immutable.
 
 `source_baseline.json` and `verify_source_integrity.py` provide an additional integrity check for the recorded HTC source files. See `SOURCE_PROVENANCE.md` for details.
-
-## Support handover checklist
-
-When sharing a run with a clinician, statistician, or collaborator, provide:
-
-- the clinical question and prespecified primary outcome;
-- definitions of every configured class;
-- subject and spectrum counts for all partitions;
-- the split workbooks and test confusion matrix;
-- aggregate and per-class metrics with uncertainty estimates calculated for the study, if applicable;
-- the source YAML and `run_config/` provenance files;
-- a clear statement that the outputs are research results and not diagnostic predictions for patient care.
