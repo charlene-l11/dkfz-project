@@ -1,0 +1,225 @@
+﻿# paste into terminal to run
+# python run_pipeline.py --config "D:/HTC_github_merged/runs/scenario_0.2.2_Master_rat_tissue_atlas_discr_9_organs/02_wls/01_test_continuous/manifold_settings.yaml"
+# to run parallel tests: open a new terminal and paste: "conda activate htc-median"
+
+
+# Platform-specific paths let this same YAML run on Windows and the Linux cluster.
+# htc_root must point to the ORIGINAL HTC repository containing htc/__init__.py.
+paths:
+  htc_root:
+    windows: "d:/HTC_github_merged/htc"
+    linux: "/omics/groups/OE0645/internal/HSI_RISE/htc"
+
+data:
+  use_L1pixel_normalized_values: true      # if false then the original reflectance values are used
+  expected_channels: 100
+  annotation_name: csv_spectrum
+  patterns:
+    - "spectrum_fromCSV1_(500.0-995.0)_masked_data_0_derivative.csv"
+    - "spectrum_fromCSV1_(500.0-995.0)*_masked_data_0_derivative.csv"
+    
+# The organ names must match exactly in all three sections.
+experiment_folders:
+  1_stom_rat:           "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0001_stomach"
+  2_sb_rat:             "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0002_small_bowel"
+  3_col_rat:            "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0003_colon"
+  4_liv_rat:            "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0004_liver"
+  5_pancr_rat:          "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0006_pancreas"
+  6_kid_rat:            "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0007_kidney"
+#  7_splee_rat:          "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0008_spleen"
+#  8_bladd_rat:          "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0009_bladder"
+#  9_omen_rat:           "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0010_omentum"
+#  10_lung_rat:          "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0013_lung"
+#  11_heart_rat:         "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0014_heart"
+#  12_cart_rat:          "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0015_cartilage"
+#  13_bone_rat:          "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0016_bone"
+#  14_skin_rat:          "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0017_skin"
+#  15_musc_rat:          "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0018_muscle"
+#  16_per_rat:           "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0019_peritoneum"
+#  17_cava_rat:          "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0022_major_vein"
+#  18_kid_G_rat:         "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0024_kidney_with_Ger_fascia"
+#  19_tube_rat:          "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0027.1_tube"
+#  20_ov_rat:            "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0027.2_ovary"
+#  21_aort_rat:          "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0020_aorta"
+#  22_ple_rat:           "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0013.1_pleura"
+#  23_blo_rat:           "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0081_blood"
+#  24_visc_f_rat:        "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0028_visc_fat"
+#  25_tend_rat:          "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0016.1_tendon"
+#  26_lig_rat:           "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0016.3_ligament_pat"
+#  27_thym_rat:          "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0029_thymus"
+#  28_trach_rat:         "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0013.2_trachea"
+#  29_fur_rat:           "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0017.1_fur"
+#  30_subcut_tis_rat:    "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0018.1_subcut_fat"
+#  31_diaphr_rat:        "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0026_diaphragm"
+#  32_thyroid_rat:       "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0013.3_thyroid"
+#  33_saliv_rat:         "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0013.4_saliv_gland"
+#  34_vesic_rat:         "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0027.3_vesic_gland"
+#  35_teeth_rat:         "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0013.5_teeth"
+#  36_urine_rat:         "Z:/TIVITA_Cat/Cat_Rat/Cat_atlas/Cat_0084_urine"
+
+labelling_file:
+  1_stom_rat:           "_labelling_001.txt"            #etiher "xxx.txt" or "xxx_*"
+  2_sb_rat:             "_labelling_001.txt"
+  3_col_rat:            "_labelling_001.txt"
+  4_liv_rat:            "_labelling_001.txt"
+  5_pancr_rat:          "_labelling_001.txt"
+  6_kid_rat:            "_labelling_001.txt"
+#  7_splee_rat:          "_labelling_001.txt"
+#  8_bladd_rat:          "_labelling_001.txt"
+#  9_omen_rat:           "_labelling_001.txt"
+#  10_lung_rat:          "_labelling_001.txt"
+#  11_heart_rat:         "_labelling_001.txt"
+#  12_cart_rat:          "_labelling_001.txt"
+#  13_bone_rat:          "_labelling_001.txt"
+#  14_skin_rat:          "_labelling_001.txt"
+#  15_musc_rat:          "_labelling_001.txt"
+#  16_per_rat:           "_labelling_001.txt"
+#  17_cava_rat:          "_labelling_001.txt"
+#  18_kid_G_rat:         "_labelling_001.txt"
+#  19_tube_rat:          "_labelling_001.txt"
+#  20_ov_rat:            "_labelling_001.txt"
+#  21_aort_rat:          "_labelling_001.txt"
+#  22_ple_rat:           "_labelling_001.txt"
+#  23_blo_rat:           "_labelling_001.txt"
+#  24_visc_f_rat:        "_labelling_001.txt"
+#  25_tend_rat:          "_labelling_001.txt"
+#  26_lig_rat:           "_labelling_001.txt"
+#  27_thym_rat:          "_labelling_001.txt"
+#  28_trach_rat:         "_labelling_001.txt"
+#  29_fur_rat:           "_labelling_001.txt"
+#  30_subcut_tis_rat:    "_labelling_001.txt"
+#  31_diaphr_rat:        "_labelling_001.txt"
+#  32_thyroid_rat:       "_labelling_001.txt"
+#  33_saliv_rat:         "_labelling_001.txt"
+#  34_vesic_rat:         "_labelling_001.txt"
+#  35_teeth_rat:         "_labelling_001.txt"
+#  36_urine_rat:         "_labelling_001.txt"
+
+hyperguis:
+  1_stom_rat:           "_hypergui_1"
+  2_sb_rat:             "_hypergui_1"
+  3_col_rat:            "_hypergui_1"
+  4_liv_rat:            "_hypergui_1"
+  5_pancr_rat:          "_hypergui_1"
+  6_kid_rat:            "_hypergui_1"
+#  7_splee_rat:          "_hypergui_1"
+#  8_bladd_rat:          "_hypergui_1"
+#  9_omen_rat:           "_hypergui_1"
+#  10_lung_rat:          "_hypergui_1"
+#  11_heart_rat:         "_hypergui_1"
+#  12_cart_rat:          "_hypergui_1"
+#  13_bone_rat:          "_hypergui_1"
+#  14_skin_rat:          "_hypergui_1"
+#  15_musc_rat:          "_hypergui_1"
+#  16_per_rat:           "_hypergui_1"
+#  17_cava_rat:          "_hypergui_1"
+#  18_kid_G_rat:         "_hypergui_1"
+#  19_tube_rat:          "_hypergui_1"
+#  20_ov_rat:            "_hypergui_1"
+#  21_aort_rat:          "_hypergui_1"
+#  22_ple_rat:           "_hypergui_1"
+#  23_blo_rat:           "_hypergui_1"
+#  24_visc_f_rat:        "_hypergui_1"
+#  25_tend_rat:          "_hypergui_1"
+#  26_lig_rat:           "_hypergui_1"
+#  27_thym_rat:          "_hypergui_1"
+#  28_trach_rat:         "_hypergui_1"
+#  29_fur_rat:           "_hypergui_1"
+#  30_subcut_tis_rat:    "_hypergui_1"
+#  31_diaphr_rat:        "_hypergui_1"
+#  32_thyroid_rat:       "_hypergui_1"
+#  33_saliv_rat:         "_hypergui_1"
+#  34_vesic_rat:         "_hypergui_1"
+#  35_teeth_rat:         "_hypergui_1"
+#  36_urine_rat:         "_hypergui_1"
+
+
+external_testing:
+  enabled: true          # if "true" the testing dataset as specified below will be used (contingency matrix might not be square)
+
+  experiment_folders:
+    1_stom_pig:            "Z:/TIVITA_Cat/Cat_Pig/Cat_atlas/Cat_0001_stomach"
+    2_sb_pig:              "Z:/TIVITA_Cat/Cat_Pig/Cat_atlas/Cat_0002_small_bowel"
+    3_col_pig:             "Z:/TIVITA_Cat/Cat_Pig/Cat_atlas/Cat_0003_colon"
+    4_liv_pig:             "Z:/TIVITA_Cat/Cat_Pig/Cat_atlas/Cat_0004_liver"
+    5_pancr_pig:           "Z:/TIVITA_Cat/Cat_Pig/Cat_atlas/Cat_0006_pancreas"
+    6_kid_pig:             "Z:/TIVITA_Cat/Cat_Pig/Cat_atlas/Cat_0007_kidney"
+    7_splee_pig:           "Z:/TIVITA_Cat/Cat_Pig/Cat_atlas/Cat_0008_spleen"
+    8_bladd_pig:           "Z:/TIVITA_Cat/Cat_Pig/Cat_atlas/Cat_0009_bladder"
+    9_omen_pig:            "Z:/TIVITA_Cat/Cat_Pig/Cat_atlas/Cat_0010_omentum"
+
+  labelling_file:
+    1_stom_pig:           "_labelling_001.txt"            #etiher "xxx.txt" or "xxx_*"
+    2_sb_pig:             "_labelling_001.txt"
+    3_col_pig:            "_labelling_001.txt"
+    4_liv_pig:            "_labelling_001.txt"
+    5_pancr_pig:          "_labelling_001.txt"
+    6_kid_pig:            "_labelling_001.txt"
+    7_splee_pig:          "_labelling_001.txt"
+    8_bladd_pig:          "_labelling_001.txt"
+    9_omen_pig:           "_labelling_001.txt"
+
+  hyperguis:
+    1_stom_pig:           "_hypergui_1"
+    2_sb_pig:             "_hypergui_1"
+    3_col_pig:            "_hypergui_1"
+    4_liv_pig:            "_hypergui_1"
+    5_pancr_pig:          "_hypergui_1"
+    6_kid_pig:            "_hypergui_1"
+    7_splee_pig:          "_hypergui_1"
+    8_bladd_pig:          "_hypergui_1"
+    9_omen_pig:           "_hypergui_1"
+
+# Full spectral grid and optional manual channel selection.
+# Use null for all wavelengths, or combine exact values and inclusive ranges.
+forward_stepwise_analysis: false
+forward_stop_wavelength: 995
+
+reverse_stepwise_analysis: false
+reverse_stop_wavelength: 500
+
+# Optional exhaustive combination search. When enabled, wavelength.selective
+# must be null and both stepwise modes above must be false.
+combination_analysis:
+  enabled: false
+  min: 500
+  max: 700
+  n_wavelengths: 3
+  fixed_wavelengths: []
+
+wavelength:
+  min: 500 # do not change
+  max: 995 # do not change
+  selective: 500-995
+              #1: 630; 810           #500-515; 580; 600-610; 995
+              #2: 540; 560
+              #3: 910; 780
+
+splitting:
+  train_ratio: 0.60
+  val_ratio: 0.20
+  test_ratio: 0.20
+  seed: 42
+  search_attempts: 20000
+  require_all_classes_in: [train, val, test]
+
+training:
+  seed: 42
+  max_epochs: 150
+  batch_size: 64
+  learning_rate: 0.0002
+  accelerator: auto
+  devices: 1
+  precision: 32-true
+  num_workers: 0
+  epoch_size: null
+  standardize: true
+  checkpoint_metric: accuracy
+
+  # Exactly one strategy: none, class_weighting, or balanced_oversampling.
+  imbalance:
+    strategy: balanced_oversampling
+
+evaluation:
+  formats: [csv, png, pdf]
+  dpi: 300
