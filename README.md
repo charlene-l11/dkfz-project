@@ -1,4 +1,3 @@
-[README.md](https://github.com/user-attachments/files/30982794/README.md)
 # DKFZ median-spectrum HTC pipeline
 
 ## What the pipeline does
