@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7D8DE0A5-AE09-4D2D-98DD-A7F0D0532C55}</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>run_pipeline.py</StartupFile>
+    <WorkingDirectory>.</WorkingDirectory>
+    <SearchPath>.;C:\Users\c758g\Documents\scripts\cluster scripts\htc</SearchPath>
+    <Name>dkfz final code</Name>
+    <RootNamespace>dkfz_final_code</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="run_pipeline.py" />
+    <Compile Include="verify_source_integrity.py" />
+    <Compile Include="median_pipeline\__init__.py" />
+    <Compile Include="median_pipeline\__main__.py" />
+    <Compile Include="median_pipeline\cli.py" />
+    <Compile Include="median_pipeline\config.py" />
+    <Compile Include="median_pipeline\dataset.py" />
+    <Compile Include="median_pipeline\evaluation.py" />
+    <Compile Include="median_pipeline\lightning_module.py" />
+    <Compile Include="median_pipeline\preparation.py" />
+    <Compile Include="median_pipeline\provenance.py" />
+    <Compile Include="median_pipeline\selective.py" />
+    <Compile Include="median_pipeline\stepwise.py" />
+    <Compile Include="median_pipeline\training.py" />
+    <Compile Include="median_pipeline\wavelengths.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="configs\manifold_settings.yaml" />
+    <Content Include="README.md" />
+    <Content Include="requirements.txt" />
+    <Content Include="source_baseline.json" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>
+
+
